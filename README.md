@@ -12,4 +12,8 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 # FLOWCHART (DIAGRAM ALIR) SISTEM
 ![FLOWCHART KELOMPOK 10](https://github.com/user-attachments/assets/828e0d2a-d2f1-4c1f-86f8-5d8ba5f5ec76)
 *PENJELASAN:*
-1. 
+- Pelanggan dapat memilih beberapa pilihan di Menu meliputi Memesan Pizza, Melihat Pesanan, Membatalkan Pesanan, Checkout Pesanan, dan Keluar dari sistem.
+- Saat memesan Pizza, dapat melakukan input ukuran, saus, keju, dan topping pada pizza. Setelah itu, pelanggan akan kembali ke Menu.
+- Pelanggan dapat memesan Pizza kedua dan seterusnya di pilihan Memesan Pizza.
+- Pelanggan dapat mengecek seluruh pesanan yang telah dibuat melalui pilihan Melihat Pesanan lalu dapat melaksanakan Checkout untuk menghasilkan struk. Setelah itu, pelanggan dapat keluar dari sistem.
+- Pelanggan juga dapat membatalkan pesanan yang telah dibuat sebelumnya pada pilihan Batalkan Pesanan. Lalu akan diantarkan kembali ke menu, sehingga dapat membuat pesanan baru.
