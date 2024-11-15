@@ -11,7 +11,7 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 3. Pelanggan dapat membatalkan pesanan-pesanan yang telah dibuat sebelumnya.
 4. Saat pelanggan melaksanakan checkout, akan diberi dua pilihan berupa delivery/pick-up langsung. Jika memilih pick-up langsung akan mendapatkan diskon 20% dari total pesanan.
 # FLOWCHART (DIAGRAM ALIR) SISTEM
-![FLOWCHART KELOMPOK 10](https://github.com/user-attachments/assets/828e0d2a-d2f1-4c1f-86f8-5d8ba5f5ec76)
+![FLOWCHART KELOMPOK 10 REV drawio (1)-1](https://github.com/user-attachments/assets/4e0b85e4-4e93-4397-aa4e-394fe061964f)
 *PENJELASAN:*
 - Pelanggan dapat memilih beberapa pilihan di Menu meliputi Memesan Pizza, Melihat Pesanan, Membatalkan Pesanan, Checkout Pesanan, dan Keluar dari sistem.
 - Saat memesan Pizza, dapat melakukan input ukuran, saus, keju, dan topping pada pizza. Setelah itu, pelanggan akan kembali ke Menu.
