@@ -2,7 +2,7 @@ import csv
 import os
 from datetime import datetime
 
-# Fungsi-fungsi autentikasi
+# Fungsi autentikasi
 def check_user_exists(username):
     if not os.path.exists('users.csv'):
         return False
@@ -45,7 +45,7 @@ def register_user():
             writer = csv.writer(file)
             writer.writerow(['username', 'password', 'nama_lengkap', 'no_telepon', 'alamat', 'tanggal_daftar'])
     
-    # Membuat data pengguna tanpa meminta detail tambahan saat registrasi
+    # Membuat data pengguna
     tanggal_daftar = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     # Menyimpan data pengguna
