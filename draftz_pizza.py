@@ -12,7 +12,7 @@ def check_user_exists(username):
         return any(row['username'] == username for row in csv_reader)
 
 def register_user():
-    print("\n=== REGISTRASI PENGGUNA BARU POKER PIZZA ===")
+    print("\n=== SIGN UP PENGGUNA BARU POKER PIZZA ===")
     
     while True:
         username = input("Username: ")
@@ -53,7 +53,7 @@ def register_user():
         writer = csv.writer(file)
         writer.writerow([username, password, '', '', '', tanggal_daftar])
     
-    print("\nRegistrasi berhasil!")
+    print("\nSign up berhasil!")
     
     # Return user data untuk auto-login
     return {
@@ -69,7 +69,7 @@ def login():
     print("\n=== LOGIN POKER PIZZA ===")
     
     if not os.path.exists('users.csv'):
-        print("Belum ada pengguna terdaftar. Silakan registrasi terlebih dahulu.")
+        print("Belum ada pengguna terdaftar. Silakan sign up terlebih dahulu.")
         return None
     
     max_attempts = 3
@@ -93,3 +93,94 @@ def login():
     
     print("Terlalu banyak percobaan gagal. Silakan coba lagi nanti.")
     return None
+
+# Fungsi pemesanan pizza
+def hitung_biaya_keju(jenis_keju):
+    harga_keju = {
+        "cheddar": 10000,
+        "mozzarella": 12000,
+        "parmesan": 15000
+    }
+    return harga_keju.get(jenis_keju, 0)
+
+def hitung_biaya_topping(nama_topping):
+    harga_topping = {
+        # Topping Rp 10.000
+        "bawang": 10000,
+        "jagung": 10000,
+        "olive": 10000,
+        "nanas": 10000,
+        
+        # Topping Rp 12.000
+        "jamur": 12000,
+        "paprika": 12000,
+        "sosis ayam": 12000,
+        "parsley": 12000,
+        "tuna": 12000,
+        "jalapeno": 12000,
+        
+        # Topping Rp 15.000
+        "pepperoni": 15000,
+        "sosis sapi": 15000,
+        "meatball": 15000,
+        "beef burger": 15000,
+        "macaroni": 15000
+    }
+    return harga_topping.get(nama_topping.lower(), 0)
+
+def simpan_pesanan(pesanan, user_data):
+    # Membuat file riwayat pesanan jika belum ada
+    if not os.path.exists('order_history.csv'):
+        with open('order_history.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['username', 'tanggal', 'ukuran', 'saus', 'keju', 'topping', 'total_biaya', 'status_pengiriman', 'nama_penerima', 'no_telepon', 'alamat'])
+    
+    # Waktu pemesanan
+    tanggal = pesanan.get('waktu_pemesanan', datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    topping_str = ','.join(pesanan['topping'])
+    
+    # Menyimpan pesanan ke file
+    with open('order_history.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([
+            user_data['username'],
+            tanggal,
+            pesanan['ukuran'],
+            pesanan['saus'],
+            pesanan['keju'],
+            topping_str,
+            pesanan['total_biaya'],
+            'Diproses',
+            pesanan.get('nama_penerima', ''),
+            pesanan.get('no_telepon', ''),
+            pesanan.get('alamat', '')
+        ])
+
+def lihat_riwayat_pesanan(username):
+    if not os.path.exists('order_history.csv'):
+        print("\nBelum ada riwayat pesanan.")
+        return
+    
+    print("\n=== RIWAYAT PESANAN POKER PIZZA ===")
+    found = False
+    
+    with open('order_history.csv', 'r') as file:
+        csv_reader = csv.DictReader(file)
+        for row in csv_reader:
+            if row['username'] == username:
+                found = True
+                print("\nTanggal:", row['tanggal'])
+                print(f"Ukuran Pizza      : {row['ukuran'].capitalize()}")
+                print(f"Saus              : {row['saus'].capitalize()}")
+                print(f"Keju              : {row['keju'].capitalize()}")
+                print(f"Topping           : {row['topping']}")
+                print(f"Total             : Rp {int(float(row['total_biaya'])):,}")
+                print(f"Status            : {row['status_pengiriman']}")
+                if row['nama_penerima']:
+                    print(f"Nama Penerima     : {row['nama_penerima']}")
+                    print(f"Nomor Telepon     : {row['no_telepon']}")
+                    print(f"Alamat            : {row['alamat']}")
+                print("-" * 50)
+    
+    if not found:
+        print("\nAnda belum memiliki riwayat pesanan.")
