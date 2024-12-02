@@ -13,7 +13,7 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 5. Data riwayat pesanan pelanggan tersimpan dan dapat diakses setiap waktu.
 6. Privasi riwayat pesanan pelanggan lebih terjaga dengan sistem akun dan sandi.
 # FLOWCHART (DIAGRAM ALIR) SISTEM
-![WhatsApp Image 2024-12-02 at 16 38 31_059e3241](https://github.com/user-attachments/assets/5d9cfbb0-0a7e-4932-ab3e-9c4a6f0e8adf)
+![WhatsApp Image 2024-12-02 at 17 29 10_b0304283](https://github.com/user-attachments/assets/0ab40c6c-542d-4ae0-8287-880429a5c388)
 
 *PENJELASAN:*
 - Pelanggan dapat memilih beberapa pilihan di Menu meliputi Memesan Pizza, Melihat Pesanan, Membatalkan Pesanan, Checkout Pesanan, dan Keluar dari sistem.
