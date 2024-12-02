@@ -421,4 +421,34 @@ def menu_utama(user_data):
                 for pesanan in semua_pesanan:
                     pesanan['nama_penerima'] = nama_penerima
                     pesanan['no_telepon'] = no_telepon
-                    pesanan['alamat'] = alamat           
+                    pesanan['alamat'] = alamat  
+                    
+            # Dapatkan timestamp saat ini untuk struk
+            waktu_pemesanan = datetime.now()
+            
+            print("\nSTRUK PEMBELIAN POKER PIZZA")
+            print("=" * 50)
+            print(f"Tanggal: {waktu_pemesanan.strftime('%d %B %Y')}")
+            print(f"Waktu  : {waktu_pemesanan.strftime('%H:%M:%S')}")
+            print("=" * 50)
+            
+            for idx, pesanan in enumerate(semua_pesanan, 1):
+                print(f"\nPizza #{idx}")
+                print(f"Ukuran Pizza          : {pesanan['ukuran'].capitalize()}")
+                print(f"Biaya Dasar           : Rp {pesanan['biaya_dasar']:,}")
+                print(f"Saus                  : {pesanan['saus'].capitalize()}")
+                print(f"Biaya Saus            : Rp {pesanan['biaya_saus']:,}")
+                print(f"Keju                  : {pesanan['keju'].capitalize()}")
+                print(f"Biaya Keju            : Rp {pesanan['biaya_keju']:,}")
+                print("\nTopping:")
+                for t in pesanan['topping']:
+                    print(f"- {t.capitalize():15} : Rp {hitung_biaya_topping(t):,}")
+                print(f"Total Biaya Topping   : Rp {pesanan['biaya_topping']:,}")
+                print(f"Subtotal Pizza #{idx}  : Rp {pesanan['total_biaya']:,}")
+                print("-" * 50)
+                
+                # Tambahkan waktu_pemesanan 
+                pesanan['waktu_pemesanan'] = waktu_pemesanan.strftime("%Y-%m-%d %H:%M:%S")
+                
+                # Simpan pesanan ke riwayat
+                simpan_pesanan(pesanan, user_data)         
