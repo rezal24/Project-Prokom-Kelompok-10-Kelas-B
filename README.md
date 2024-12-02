@@ -10,6 +10,8 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 2. Pelanggan dapat membeli Pizza lebih dari satu dengan kombinasi yang berbeda.
 3. Pelanggan dapat membatalkan pesanan-pesanan yang telah dibuat sebelumnya.
 4. Saat pelanggan melaksanakan checkout, akan diberi dua pilihan berupa delivery/pick-up langsung. Jika memilih pick-up langsung akan mendapatkan diskon 20% dari total pesanan.
+5. Data riwayat pesanan pelanggan tersimpan dan dapat diakses setiap waktu.
+6. Privasi riwayat pesanan pelanggan lebih terjaga dengan sistem akun dan sandi.
 # FLOWCHART (DIAGRAM ALIR) SISTEM
 ![WhatsApp Image 2024-12-02 at 16 38 31_059e3241](https://github.com/user-attachments/assets/5d9cfbb0-0a7e-4932-ab3e-9c4a6f0e8adf)
 *PENJELASAN:*
