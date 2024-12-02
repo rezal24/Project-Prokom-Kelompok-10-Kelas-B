@@ -335,3 +335,52 @@ def menu_utama(user_data):
             semua_pesanan.append(pesanan_baru)
             print("\nPesanan berhasil ditambahkan!")
             
+        elif pilihan == "2":
+            if not semua_pesanan:
+                print("\nTidak ada pesanan saat ini.")
+                continue
+            
+            print("\n=== DAFTAR PESANAN ===")
+            for idx, pesanan in enumerate(semua_pesanan, 1):
+                print(f"\nPizza #{idx}")
+                print(f"Ukuran Pizza          : {pesanan['ukuran'].capitalize()}")
+                print(f"Biaya Dasar           : Rp {pesanan['biaya_dasar']:,}")
+                print(f"Saus                  : {pesanan['saus'].capitalize()}")
+                print(f"Biaya Saus            : Rp {pesanan['biaya_saus']:,}")
+                print(f"Keju                  : {pesanan['keju'].capitalize()}")
+                print(f"Biaya Keju            : Rp {pesanan['biaya_keju']:,}")
+                print("\nTopping:")
+                for t in pesanan['topping']:
+                    print(f"- {t.capitalize():15} : Rp {hitung_biaya_topping(t):,}")
+                print(f"Total Biaya Topping   : Rp {pesanan['biaya_topping']:,}")
+                print(f"Total Pizza #{idx}    : Rp {pesanan['total_biaya']:,}")
+                print("-" * 50)
+            
+        elif pilihan == "3":
+            if not semua_pesanan:
+                print("\nTidak ada pesanan untuk dibatalkan.")
+                continue
+            
+            while True:
+                print("\n=== BATALKAN PESANAN ===")
+                print("0. Kembali ke Menu Utama")
+                for idx, pesanan in enumerate(semua_pesanan, 1):
+                    print(f"{idx}. Pizza {pesanan['ukuran'].capitalize()} - Rp {pesanan['total_biaya']:,}")
+                
+                try:
+                    pilih_batal = input("\nMasukkan nomor pizza yang ingin dibatalkan (0 untuk kembali): ")
+                    
+                    if pilih_batal == '0':
+                        print("\nKembali ke menu utama...")
+                        break
+                        
+                    pilih_batal = int(pilih_batal)
+                    if 1 <= pilih_batal <= len(semua_pesanan):
+                        batalkan = semua_pesanan.pop(pilih_batal - 1)
+                        print(f"\nPesanan pizza {batalkan['ukuran'].capitalize()} berhasil dibatalkan.")
+                        break
+                    else:
+                        print("Nomor pizza tidak valid.")
+                except ValueError:
+                    print("Masukkan nomor yang valid.")
+                    
