@@ -452,7 +452,7 @@ def menu_utama(user_data):
                 
                 # Simpan pesanan ke riwayat
                 simpan_pesanan(pesanan, user_data)
-                
+            
             if pesanan_pizza == "antar":
                 print("\nInformasi Pengiriman:")
                 print(f"Nama Penerima         : {nama_penerima}")
@@ -484,7 +484,7 @@ def menu_utama(user_data):
             
         else:
             print("\nPilihan tidak valid. Silakan pilih 1-6.")
-            
+
 def main():
     while True:
         print("\n=== SELAMAT DATANG DI POKER PIZZA ===")
