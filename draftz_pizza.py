@@ -306,3 +306,32 @@ def menu_utama(user_data):
                 topping.append(tambahan)
                 biaya_topping += hitung_biaya_topping(tambahan)
                 print(f"Topping {tambahan.capitalize()} ditambahkan.")
+                
+            # Hitung biaya
+            biaya_saus = 10000
+            biaya_keju = hitung_biaya_keju(keju)
+            
+            if dasar == "kecil":
+                biaya_dasar = 25000
+            elif dasar == "sedang":
+                biaya_dasar = 35000
+            else:
+                biaya_dasar = 45000
+            
+            total_biaya = biaya_dasar + biaya_topping + biaya_saus + biaya_keju
+            
+            pesanan_baru = {
+                'ukuran': dasar,
+                'saus': saus,
+                'keju': keju,
+                'topping': topping,
+                'biaya_dasar': biaya_dasar,
+                'biaya_saus': biaya_saus,
+                'biaya_keju': biaya_keju,
+                'biaya_topping': biaya_topping,
+                'total_biaya': total_biaya
+            }
+            
+            semua_pesanan.append(pesanan_baru)
+            print("\nPesanan berhasil ditambahkan!")
+            
