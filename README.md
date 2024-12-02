@@ -14,6 +14,7 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 6. Privasi riwayat pesanan pelanggan lebih terjaga dengan sistem akun dan sandi.
 # FLOWCHART (DIAGRAM ALIR) SISTEM
 ![WhatsApp Image 2024-12-02 at 16 38 31_059e3241](https://github.com/user-attachments/assets/5d9cfbb0-0a7e-4932-ab3e-9c4a6f0e8adf)
+
 *PENJELASAN:*
 - Pelanggan dapat memilih beberapa pilihan di Menu meliputi Memesan Pizza, Melihat Pesanan, Membatalkan Pesanan, Checkout Pesanan, dan Keluar dari sistem.
 - Saat memesan Pizza, dapat melakukan input ukuran, saus, keju, dan topping pada pizza. Setelah itu, pelanggan akan kembali ke Menu.
