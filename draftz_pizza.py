@@ -184,3 +184,125 @@ def lihat_riwayat_pesanan(username):
     
     if not found:
         print("\nAnda belum memiliki riwayat pesanan.")
+
+def menu_utama(user_data):
+    semua_pesanan = []
+
+    while True:
+        print("\nMenu Utama Poker Pizza:")
+        print("1. Pesan Pizza")
+        print("2. Lihat Pesanan")
+        print("3. Cancel Pesanan")
+        print("4. Checkout")
+        print("5. Lihat Riwayat Pesanan")
+        print("6. Keluar")
+        
+        pilihan = input("Pilih menu (1-6): ")
+        
+        if pilihan == "1":
+            pesanan_baru = {}
+            
+            # Ukuran Pizza
+            print("\n=== PILIHAN UKURAN PIZZA ===")
+            print("1) Kecil           Rp 25.000")
+            print("2) Sedang          Rp 35.000")
+            print("3) Besar           Rp 45.000")
+            
+            dasar_opsi = {
+                '1': 'kecil',
+                '2': 'sedang', 
+                '3': 'besar'
+            }
+            
+            while True:
+                dasar_input = input("\nPilih ukuran pizza (1/2/3): ")
+                if dasar_input in dasar_opsi:
+                    dasar = dasar_opsi[dasar_input]
+                    break
+                print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
+            
+            # Saus
+            print("\n=== PILIHAN SAUS (Rp 10.000) ===")
+            print("1) Saus Tomat")
+            print("2) Saus Pesto")
+            print("3) Saus BBQ")
+            
+            saus_opsi = {
+                '1': 'tomat',
+                '2': 'pesto',
+                '3': 'bbq'
+            }
+            
+            while True:
+                saus_input = input("\nPilih saus (1/2/3): ")
+                if saus_input in saus_opsi:
+                    saus = saus_opsi[saus_input]
+                    break
+                print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
+            
+            # Keju
+            print("\n=== PILIHAN KEJU ===")
+            print("1) Keju Cheddar    Rp 10.000")
+            print("2) Keju Mozzarella Rp 12.000")
+            print("3) Keju Parmesan   Rp 15.000")
+            
+            keju_opsi = {
+                '1': 'cheddar',
+                '2': 'mozzarella',
+                '3': 'parmesan'
+            }
+            
+            while True:
+                keju_input = input("\nPilih keju (1/2/3): ")
+                if keju_input in keju_opsi:
+                    keju = keju_opsi[keju_input]
+                    break
+                print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
+            
+            # Topping
+            print("\n=== PILIHAN TOPPING ===")
+            print("1) Bawang          Rp 10.000")
+            print("2) Jagung          Rp 10.000")
+            print("3) Olive           Rp 10.000")
+            print("4) Nanas           Rp 10.000")
+            print("5) Jamur           Rp 12.000")
+            print("6) Paprika         Rp 12.000")
+            print("7) Sosis Ayam      Rp 12.000")
+            print("8) Parsley         Rp 12.000")
+            print("9) Tuna            Rp 12.000")
+            print("10) Jalapeno       Rp 12.000")
+            print("11) Pepperoni      Rp 15.000")
+            print("12) Sosis Sapi     Rp 15.000")
+            print("13) Meatball       Rp 15.000")
+            print("14) Beef Burger    Rp 15.000")
+            print("15) Macaroni       Rp 15.000")
+            print("\n0) Selesai memilih topping")
+            
+            topping_opsi = {
+                '1': 'bawang', '2': 'jagung', '3': 'olive', '4': 'nanas', 
+                '5': 'jamur', '6': 'paprika', '7': 'sosis ayam', 
+                '8': 'parsley', '9': 'tuna', '10': 'jalapeno', 
+                '11': 'pepperoni', '12': 'sosis sapi', '13': 'meatball', 
+                '14': 'beef burger', '15': 'macaroni'
+            }
+            
+            topping = []
+            biaya_topping = 0
+            
+            while True:
+                topping_input = input("\nPilih topping (0-15, 0 untuk selesai): ")
+                if topping_input == '0':
+                    break
+                
+                if topping_input not in topping_opsi:
+                    print("Pilihan tidak valid. Silakan pilih 1-15 atau 0.")
+                    continue
+                
+                tambahan = topping_opsi[topping_input]
+                if tambahan in topping:
+                    print("Topping sudah dipilih sebelumnya.")
+                    continue
+                
+                topping.append(tambahan)
+                biaya_topping += hitung_biaya_topping(tambahan)
+                print(f"Topping {tambahan.capitalize()} ditambahkan.")
