@@ -384,3 +384,41 @@ def menu_utama(user_data):
                 except ValueError:
                     print("Masukkan nomor yang valid.")
                     
+        elif pilihan == "4":
+            if not semua_pesanan:
+                print("\nTidak ada pesanan untuk dicheckout.")
+                continue
+                
+            print("\nApakah Anda ingin ambil sendiri atau diantar?")
+            print("Jika Anda ambil sendiri, Anda mendapat diskon 20%")
+            pesanan_pizza = input("Ketik 'ambil' atau 'antar': ").lower()
+            
+            # Data delivery
+            nama_penerima = ""
+            no_telepon = ""
+            alamat = ""
+            
+            # Hitung total 
+            total_keseluruhan = sum(pesanan['total_biaya'] for pesanan in semua_pesanan)
+            
+            if pesanan_pizza == "ambil":
+                pengurangan_biaya = total_keseluruhan * (20 / 100)
+                total_keseluruhan = total_keseluruhan - pengurangan_biaya
+                diskon = True
+            else:
+                diskon = False
+                pengurangan_biaya = 0
+                print("\nMasukkan data pengiriman:")
+                nama_penerima = input("Nama penerima       : ")
+                while True:
+                    no_telepon = input("Nomor telepon       : ")
+                    if no_telepon.isdigit() and len(no_telepon) >= 12:
+                        break
+                    print("Nomor telepon tidak valid. Masukkan minimal 12 digit angka.")
+                alamat = input("Alamat lengkap      : ")
+                
+                # Tambahkan data pengiriman ke setiap pesanan
+                for pesanan in semua_pesanan:
+                    pesanan['nama_penerima'] = nama_penerima
+                    pesanan['no_telepon'] = no_telepon
+                    pesanan['alamat'] = alamat           
