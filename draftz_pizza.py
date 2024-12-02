@@ -4,7 +4,23 @@ from datetime import datetime
 from RegisterUser import check_user_exists, register_user
 from Login import login
 
-# Fungsi pemesanan pizza
+# Fungsi-fungsi pemesanan pizza
+def hitung_biaya_dasar(jenis_dasar):
+    harga_dasar = {
+        "kecil" : 25000,
+        "sedang" : 35000,
+        "besar" : 45000
+    }
+    return harga_dasar.get(jenis_dasar, 0)
+
+def hitung_biaya_saus(jenis_saus):
+    harga_saus = {
+        "tomat" : 10000,
+        "pesto" : 10000,
+        "bbq" : 10000
+    }
+    return harga_saus.get(jenis_saus, 0)
+
 def hitung_biaya_keju(jenis_keju):
     harga_keju = {
         "cheddar": 10000,
@@ -43,9 +59,9 @@ def simpan_pesanan(pesanan, user_data):
     if not os.path.exists('order_history.csv'):
         with open('order_history.csv', 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['username', 'tanggal', 'ukuran', 'saus', 'keju', 'topping', 'total_biaya', 'status_pengiriman', 'nama_penerima', 'no_telepon', 'alamat'])
+            writer.writerow(['username', 'tanggal', 'ukuran', 'saus', 'keju', 'topping', 'total_biaya', 'nama_penerima', 'no_telepon', 'alamat'])
     
-    # Waktu pemesanan
+    # Gunakan waktu_pemesanan dari pesanan jika tersedia, jika tidak gunakan waktu saat ini
     tanggal = pesanan.get('waktu_pemesanan', datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     topping_str = ','.join(pesanan['topping'])
     
@@ -60,7 +76,6 @@ def simpan_pesanan(pesanan, user_data):
             pesanan['keju'],
             topping_str,
             pesanan['total_biaya'],
-            'Diproses',
             pesanan.get('nama_penerima', ''),
             pesanan.get('no_telepon', ''),
             pesanan.get('alamat', '')
@@ -68,7 +83,7 @@ def simpan_pesanan(pesanan, user_data):
 
 def lihat_riwayat_pesanan(username):
     if not os.path.exists('order_history.csv'):
-        print("\nBelum ada riwayat pesanan.")
+        print("Belum ada riwayat pesanan.")
         return
     
     print("\n=== RIWAYAT PESANAN POKER PIZZA ===")
@@ -85,7 +100,6 @@ def lihat_riwayat_pesanan(username):
                 print(f"Keju              : {row['keju'].capitalize()}")
                 print(f"Topping           : {row['topping']}")
                 print(f"Total             : Rp {int(float(row['total_biaya'])):,}")
-                print(f"Status            : {row['status_pengiriman']}")
                 if row['nama_penerima']:
                     print(f"Nama Penerima     : {row['nama_penerima']}")
                     print(f"Nomor Telepon     : {row['no_telepon']}")
@@ -97,7 +111,7 @@ def lihat_riwayat_pesanan(username):
 
 def menu_utama(user_data):
     semua_pesanan = []
-
+    
     while True:
         print("\nMenu Utama Poker Pizza:")
         print("1. Pesan Pizza")
@@ -108,6 +122,7 @@ def menu_utama(user_data):
         print("6. Keluar")
         
         pilihan = input("Pilih menu (1-6): ")
+        os.system("cls")
         
         if pilihan == "1":
             pesanan_baru = {}
@@ -128,6 +143,7 @@ def menu_utama(user_data):
                 dasar_input = input("\nPilih ukuran pizza (1/2/3): ")
                 if dasar_input in dasar_opsi:
                     dasar = dasar_opsi[dasar_input]
+                    os.system("cls")
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
             
@@ -147,6 +163,7 @@ def menu_utama(user_data):
                 saus_input = input("\nPilih saus (1/2/3): ")
                 if saus_input in saus_opsi:
                     saus = saus_opsi[saus_input]
+                    os.system("cls")
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
             
@@ -166,6 +183,7 @@ def menu_utama(user_data):
                 keju_input = input("\nPilih keju (1/2/3): ")
                 if keju_input in keju_opsi:
                     keju = keju_opsi[keju_input]
+                    os.system("cls")
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
             
@@ -216,17 +234,11 @@ def menu_utama(user_data):
                 topping.append(tambahan)
                 biaya_topping += hitung_biaya_topping(tambahan)
                 print(f"Topping {tambahan.capitalize()} ditambahkan.")
-                
-            # Hitung biaya
-            biaya_saus = 10000
-            biaya_keju = hitung_biaya_keju(keju)
             
-            if dasar == "kecil":
-                biaya_dasar = 25000
-            elif dasar == "sedang":
-                biaya_dasar = 35000
-            else:
-                biaya_dasar = 45000
+            # Hitung biaya
+            biaya_dasar = hitung_biaya_dasar(dasar)
+            biaya_saus = hitung_biaya_saus(saus)
+            biaya_keju = hitung_biaya_keju(keju)
             
             total_biaya = biaya_dasar + biaya_topping + biaya_saus + biaya_keju
             
@@ -243,11 +255,13 @@ def menu_utama(user_data):
             }
             
             semua_pesanan.append(pesanan_baru)
+            os.system("cls")
             print("\nPesanan berhasil ditambahkan!")
             
         elif pilihan == "2":
             if not semua_pesanan:
-                print("\nTidak ada pesanan saat ini.")
+                os.system("cls")
+                print("Tidak ada pesanan saat ini.")
                 continue
             
             print("\n=== DAFTAR PESANAN ===")
@@ -261,14 +275,14 @@ def menu_utama(user_data):
                 print(f"Biaya Keju            : Rp {pesanan['biaya_keju']:,}")
                 print("\nTopping:")
                 for t in pesanan['topping']:
-                    print(f"- {t.capitalize():15} : Rp {hitung_biaya_topping(t):,}")
+                    print(f"- {t.capitalize():15}     : Rp {hitung_biaya_topping(t):,}")
                 print(f"Total Biaya Topping   : Rp {pesanan['biaya_topping']:,}")
-                print(f"Total Pizza #{idx}    : Rp {pesanan['total_biaya']:,}")
+                print(f"Total Pizza #{idx}        : Rp {pesanan['total_biaya']:,}")
                 print("-" * 50)
             
         elif pilihan == "3":
             if not semua_pesanan:
-                print("\nTidak ada pesanan untuk dibatalkan.")
+                print("Tidak ada pesanan untuk dibatalkan.")
                 continue
             
             while True:
@@ -281,27 +295,31 @@ def menu_utama(user_data):
                     pilih_batal = input("\nMasukkan nomor pizza yang ingin dibatalkan (0 untuk kembali): ")
                     
                     if pilih_batal == '0':
-                        print("\nKembali ke menu utama...")
+                        os.system("cls")
+                        print("\nKembali ke menu utama...")     
                         break
                         
                     pilih_batal = int(pilih_batal)
                     if 1 <= pilih_batal <= len(semua_pesanan):
                         batalkan = semua_pesanan.pop(pilih_batal - 1)
+                        os.system("cls")
                         print(f"\nPesanan pizza {batalkan['ukuran'].capitalize()} berhasil dibatalkan.")
                         break
                     else:
                         print("Nomor pizza tidak valid.")
                 except ValueError:
                     print("Masukkan nomor yang valid.")
-                    
+
         elif pilihan == "4":
             if not semua_pesanan:
-                print("\nTidak ada pesanan untuk dicheckout.")
+                os.system("cls")
+                print("Tidak ada pesanan untuk dicheckout.")
                 continue
                 
             print("\nApakah Anda ingin ambil sendiri atau diantar?")
             print("Jika Anda ambil sendiri, Anda mendapat diskon 20%")
             pesanan_pizza = input("Ketik 'ambil' atau 'antar': ").lower()
+            os.system("cls")
             
             # Data delivery
             nama_penerima = ""
@@ -319,20 +337,34 @@ def menu_utama(user_data):
                 diskon = False
                 pengurangan_biaya = 0
                 print("\nMasukkan data pengiriman:")
-                nama_penerima = input("Nama penerima       : ")
+                nama_penerima = input("Nama penerima           : ")
+                
                 while True:
-                    no_telepon = input("Nomor telepon       : ")
-                    if no_telepon.isdigit() and len(no_telepon) >= 12:
+                    no_telepon_input = input("Nomor telepon           : (+62)").strip()
+                    # Validasi nomor telepon Indonesia dengan format +62
+                    if no_telepon_input.isdigit() and 11 <= len(no_telepon_input) <= 12:
+                        no_telepon = f"(+62){no_telepon_input}"
                         break
-                    print("Nomor telepon tidak valid. Masukkan minimal 12 digit angka.")
-                alamat = input("Alamat lengkap      : ")
+                    print("Nomor telepon tidak valid. Masukkan 11-12 digit nomor telepon (tanpa +62).")
+                    
+                while True:
+                    alamat = input("Alamat                  : ").strip()
+                    # Pastikan alamat minimal berisi nama jalan
+                    if "jalan" in alamat:
+                        break
+                    else:
+                        print("Nama jalan harus diisi.")
+                
+                # Tambahkan detail lengkap alamat
+                alamat_tambahan = input("Detail alamat (opsional): ")
+                alamat = f"{alamat}, {alamat_tambahan}".strip(', ')
                 
                 # Tambahkan data pengiriman ke setiap pesanan
                 for pesanan in semua_pesanan:
                     pesanan['nama_penerima'] = nama_penerima
                     pesanan['no_telepon'] = no_telepon
-                    pesanan['alamat'] = alamat  
-                    
+                    pesanan['alamat'] = alamat
+            
             # Dapatkan timestamp saat ini untuk struk
             waktu_pemesanan = datetime.now()
             
@@ -352,9 +384,9 @@ def menu_utama(user_data):
                 print(f"Biaya Keju            : Rp {pesanan['biaya_keju']:,}")
                 print("\nTopping:")
                 for t in pesanan['topping']:
-                    print(f"- {t.capitalize():15} : Rp {hitung_biaya_topping(t):,}")
+                    print(f"- {t.capitalize():15}     : Rp {hitung_biaya_topping(t):,}")
                 print(f"Total Biaya Topping   : Rp {pesanan['biaya_topping']:,}")
-                print(f"Subtotal Pizza #{idx}  : Rp {pesanan['total_biaya']:,}")
+                print(f"Subtotal Pizza #{idx}     : Rp {pesanan['total_biaya']:,}")
                 print("-" * 50)
                 
                 # Tambahkan waktu_pemesanan 
@@ -369,9 +401,9 @@ def menu_utama(user_data):
                 print(f"Nomor Telepon         : {no_telepon}")
                 print(f"Alamat                : {alamat}")
                 print(f"Biaya Pengiriman      : Gratis")
-            
+
             print("\nRingkasan Biaya:")
-            print(f"Total Pesanan         : Rp {total_keseluruhan:,}")
+            print(f"Total Pesanan         : Rp {total_biaya:,}")
             
             if diskon:
                 print(f"Diskon (20%)          : Rp {round(pengurangan_biaya):,}")
@@ -386,13 +418,16 @@ def menu_utama(user_data):
             print("\nTerima kasih telah berbelanja di Poker Pizza!")
             
         elif pilihan == "5":
+            os.system("cls")
             lihat_riwayat_pesanan(user_data['username'])
             
         elif pilihan == "6":
-            print("\nTerima kasih telah menggunakan layanan Poker Pizza!")
+            os.system("cls")
+            print("Terima kasih telah menggunakan layanan Poker Pizza!")
             break
             
         else:
+            os.system("cls")
             print("\nPilihan tidak valid. Silakan pilih 1-6.")
 
 def main():
