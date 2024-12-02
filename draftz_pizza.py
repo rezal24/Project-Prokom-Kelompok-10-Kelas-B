@@ -451,4 +451,66 @@ def menu_utama(user_data):
                 pesanan['waktu_pemesanan'] = waktu_pemesanan.strftime("%Y-%m-%d %H:%M:%S")
                 
                 # Simpan pesanan ke riwayat
-                simpan_pesanan(pesanan, user_data)         
+                simpan_pesanan(pesanan, user_data)
+                
+            if pesanan_pizza == "antar":
+                print("\nInformasi Pengiriman:")
+                print(f"Nama Penerima         : {nama_penerima}")
+                print(f"Nomor Telepon         : {no_telepon}")
+                print(f"Alamat                : {alamat}")
+                print(f"Biaya Pengiriman      : Gratis")
+            
+            print("\nRingkasan Biaya:")
+            print(f"Total Pesanan         : Rp {total_keseluruhan:,}")
+            
+            if diskon:
+                print(f"Diskon (20%)          : Rp {round(pengurangan_biaya):,}")
+            else:
+                print("Diskon                : Rp 0")
+            
+            print(f"Total Akhir           : Rp {round(total_keseluruhan):,}")
+            print("=" * 50)
+            
+            # Reset pesanan setelah checkout
+            semua_pesanan = []
+            print("\nTerima kasih telah berbelanja di Poker Pizza!")
+            
+        elif pilihan == "5":
+            lihat_riwayat_pesanan(user_data['username'])
+            
+        elif pilihan == "6":
+            print("\nTerima kasih telah menggunakan layanan Poker Pizza!")
+            break
+            
+        else:
+            print("\nPilihan tidak valid. Silakan pilih 1-6.")
+            
+def main():
+    while True:
+        print("\n=== SELAMAT DATANG DI POKER PIZZA ===")
+        print("1. Login")
+        print("2. Sign Up")
+        print("3. Keluar")
+        
+        pilihan = input("Pilih menu (1-3): ")
+        
+        if pilihan == "1":
+            user_data = login()
+            if user_data:
+                menu_utama(user_data)
+        
+        elif pilihan == "2":
+            user_data = register_user()  # Menangkap data user yang baru sign up
+            if user_data:  # Jika sign up berhasil
+                print(f"\nSelamat datang di Poker Pizza, {user_data['username']}!")
+                menu_utama(user_data)  # Langsung masuk ke menu utama
+        
+        elif pilihan == "3":
+            print("\nTerima kasih telah menggunakan layanan Poker Pizza!")
+            break
+        
+        else:
+            print("\nPilihan tidak valid. Silakan pilih 1-3.")
+
+if __name__ == "__main__":
+    main()
