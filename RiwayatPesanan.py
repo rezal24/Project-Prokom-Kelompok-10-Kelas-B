@@ -34,7 +34,8 @@ def lihat_riwayat_pesanan(username):
         print("Belum ada riwayat pesanan.")
         return
     
-    print("\n=== RIWAYAT PESANAN POKER PIZZA ===")
+    print(f"-" * 50)
+    print("=== RIWAYAT PESANAN POKER PIZZA ===")
     found = False
     
     with open('order_history.csv', 'r') as file:

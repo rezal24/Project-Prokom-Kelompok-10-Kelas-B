@@ -210,7 +210,8 @@ def menu_utama(user_data):
                 print("Tidak ada pesanan saat ini.")
                 continue
             
-            print("\n=== DAFTAR PESANAN ===")
+            print(f"-" * 50)
+            print("=== DAFTAR PESANAN ===")
             for idx, pesanan in enumerate(semua_pesanan, 1):
                 print(f"\nPizza #{idx}")
                 print(f"Ukuran Pizza          : {pesanan['ukuran'].capitalize()}")
@@ -252,8 +253,10 @@ def menu_utama(user_data):
                         print(f"\nPesanan pizza {batalkan['ukuran'].capitalize()} berhasil dibatalkan.")
                         break
                     else:
+                        os.system("cls")
                         print("Nomor pizza tidak valid.")
                 except ValueError:
+                    os.system("cls")
                     print("Masukkan nomor yang valid.")
 
         elif pilihan == "4":

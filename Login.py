@@ -28,7 +28,10 @@ def login():
         
         attempts += 1
         remaining_attempts = max_attempts - attempts
+        os.system("cls")
         print(f"Username atau password salah. Sisa percobaan: {remaining_attempts}")
+        print("")
     
+    os.system("cls")
     print("Terlalu banyak percobaan gagal. Silakan coba lagi nanti.")
     return None
