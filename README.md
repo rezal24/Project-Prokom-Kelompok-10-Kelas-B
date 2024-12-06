@@ -16,8 +16,11 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 ![WhatsApp Image 2024-12-02 at 17 29 10_b0304283](https://github.com/user-attachments/assets/0ab40c6c-542d-4ae0-8287-880429a5c388)
 
 *PENJELASAN:*
-- Pelanggan dapat memilih beberapa pilihan di Menu meliputi Memesan Pizza, Melihat Pesanan, Membatalkan Pesanan, Checkout Pesanan, dan Keluar dari sistem.
+- Pelanggan melakukan _login_ jika sebelumnya sudah memiliki akun dan bisa membuat akun baru jika belum memiliki akun
+- Pelanggan dapat memilih beberapa pilihan di Menu meliputi Memesan Pizza, Melihat Pesanan, Membatalkan Pesanan, Checkout Pesanan, Melihat Riwayat Pesanan, dan Keluar dari sistem.
 - Saat memesan Pizza, dapat melakukan input ukuran, saus, keju, dan topping pada pizza. Setelah itu, pelanggan akan kembali ke Menu.
 - Pelanggan dapat memesan Pizza kedua dan seterusnya di pilihan Memesan Pizza.
 - Pelanggan dapat mengecek seluruh pesanan yang telah dibuat melalui pilihan Melihat Pesanan lalu dapat melaksanakan Checkout untuk menghasilkan struk. Setelah itu, pelanggan dapat keluar dari sistem.
 - Pelanggan juga dapat membatalkan pesanan yang telah dibuat sebelumnya pada pilihan Batalkan Pesanan. Lalu akan diantarkan kembali ke menu, sehingga dapat membuat pesanan baru.
+- Pelanggan dapat melihat riwayat pesanan sekaligus harga yang dibayarkan yang telah dibuat sebelum-sebelumnya
+- Saat keluar dari sistem, pelanggan akan otomatis _logout_ dari sistem
