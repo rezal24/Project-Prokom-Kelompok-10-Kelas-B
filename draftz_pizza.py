@@ -93,7 +93,6 @@ def menu_utama(user_data):
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
             
-            # Saus
             print("\n=== PILIHAN SAUS (Rp 10.000) ===")
             print("1) Saus Tomat")
             print("2) Saus Pesto")
@@ -113,7 +112,6 @@ def menu_utama(user_data):
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
             
-            # Keju
             print("\n=== PILIHAN KEJU ===")
             print("1) Keju Cheddar    Rp 10.000")
             print("2) Keju Mozzarella Rp 12.000")
@@ -133,7 +131,6 @@ def menu_utama(user_data):
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
             
-            # Topping
             print("\n=== PILIHAN TOPPING ===")
             print("1) Bawang          Rp 10.000")
             print("2) Jagung          Rp 10.000")
@@ -275,7 +272,6 @@ def menu_utama(user_data):
             no_telepon = ""
             alamat = ""
             
-            # Hitung total 
             total_keseluruhan = sum(pesanan['total_biaya'] for pesanan in semua_pesanan)
             
             if pesanan_pizza == "ambil":
