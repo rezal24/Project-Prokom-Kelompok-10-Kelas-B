@@ -53,6 +53,7 @@ def register_user():
         writer = csv.writer(file)
         writer.writerow([username, password, '', '', '', tanggal_daftar])
     
+    os.system("cls")
     print("\nSign up berhasil!")
     
     # Return user data untuk auto-login

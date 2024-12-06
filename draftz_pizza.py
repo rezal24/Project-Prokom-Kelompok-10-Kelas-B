@@ -386,18 +386,22 @@ def main():
         pilihan = input("Pilih menu (1-3): ")
         
         if pilihan == "1":
+            os.system("cls")
             user_data = login()
             if user_data:
                 menu_utama(user_data)
         
         elif pilihan == "2":
+            os.system("cls")
             user_data = register_user()  # Menangkap data user yang baru sign up
             if user_data:  # Jika sign up berhasil
                 print(f"\nSelamat datang di Poker Pizza, {user_data['username']}!")
                 menu_utama(user_data)  # Langsung masuk ke menu utama
         
         elif pilihan == "3":
+            os.system("cls")
             print("\nTerima kasih telah menggunakan layanan Poker Pizza!")
+            print("")
             break
         
         else:

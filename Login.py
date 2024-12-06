@@ -6,6 +6,7 @@ def login():
     print("\n=== LOGIN POKER PIZZA ===")
     
     if not os.path.exists('users.csv'):
+        os.system("cls")
         print("Belum ada pengguna terdaftar. Silakan sign up terlebih dahulu.")
         return None
     
@@ -20,6 +21,7 @@ def login():
             csv_reader = csv.DictReader(file)
             for row in csv_reader:
                 if row['username'] == username and row['password'] == password:
+                    os.system("cls")
                     print(f"\nLogin Berhasil!")
                     print(f"\nSelamat datang di Poker Pizza, {username}!")
                     return row
