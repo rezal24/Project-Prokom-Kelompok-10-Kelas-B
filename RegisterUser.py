@@ -28,6 +28,7 @@ def register_user():
     
     while True:
         password = input("Password: ")
+        print ("!!!! Password Minimal 6 Karakter !!!!")
         if len(password) < 6:
             print("Password harus minimal 6 karakter.")
             continue
