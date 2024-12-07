@@ -5,6 +5,7 @@ from datetime import datetime
 from RegisterUser import check_user_exists, register_user
 from Login import login
 from RiwayatPesanan import lihat_riwayat_pesanan, simpan_pesanan
+from StrukPembelian import simpan_struk_pembelian
 from HitungBiaya import hitung_biaya_dasar, hitung_biaya_keju, hitung_biaya_saus, hitung_biaya_topping
 
 def menu_utama(user_data):
@@ -346,7 +347,6 @@ def menu_utama(user_data):
                     pilih_kembali = input("\nMasukkan 0 untuk kembali: ")
                     if pilih_kembali == '0':
                         os.system("cls")
-                        print("\nKembali ke Menu Utama...")
                         print("\nTerima kasih telah berbelanja di Poker Pizza!")
                         time.sleep(2)
                         os.system("cls")
@@ -361,6 +361,9 @@ def menu_utama(user_data):
                     
             # Simpan pesanan ke riwayat
             simpan_pesanan(pesanan, user_data)
+            
+            # Simpan struk pembelian
+            simpan_struk_pembelian(semua_pesanan, total_keseluruhan, diskon, pengurangan_biaya, user_data, pesanan_pizza)
                 
             # Reset pesanan setelah checkout
             semua_pesanan = []
