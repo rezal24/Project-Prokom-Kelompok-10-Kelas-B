@@ -1,5 +1,6 @@
 import os
 import csv
+import time
 from datetime import datetime
 
 def simpan_pesanan(pesanan, user_data):
@@ -32,28 +33,47 @@ def simpan_pesanan(pesanan, user_data):
 def lihat_riwayat_pesanan(username):
     if not os.path.exists('order_history.csv'):
         print("Belum ada riwayat pesanan.")
+        print("\nKembali ke menu utama...")
+        time.sleep(2)
+        os.system("cls")
         return
     
-    print(f"-" * 50)
-    print("=== RIWAYAT PESANAN POKER PIZZA ===")
-    found = False
-    
-    with open('order_history.csv', 'r') as file:
-        csv_reader = csv.DictReader(file)
-        for row in csv_reader:
-            if row['username'] == username:
-                found = True
-                print("\nTanggal:", row['tanggal'])
-                print(f"Ukuran Pizza      : {row['ukuran'].capitalize()}")
-                print(f"Saus              : {row['saus'].capitalize()}")
-                print(f"Keju              : {row['keju'].capitalize()}")
-                print(f"Topping           : {row['topping']}")
-                print(f"Total             : Rp {int(float(row['total_biaya'])):,}")
-                if row['nama_penerima']:
-                    print(f"Nama Penerima     : {row['nama_penerima']}")
-                    print(f"Nomor Telepon     : {row['no_telepon']}")
-                    print(f"Alamat            : {row['alamat']}")
-                print("-" * 50)
+    while True:
+        print(f"-" * 50)
+        print("=== RIWAYAT PESANAN POKER PIZZA ===")
+        found = False
+        
+        with open('order_history.csv', 'r') as file:
+            csv_reader = csv.DictReader(file)
+            for row in csv_reader:
+                if row['username'] == username:
+                    found = True
+                    print("\nTanggal:", row['tanggal'])
+                    print(f"Ukuran Pizza      : {row['ukuran'].capitalize()}")
+                    print(f"Saus              : {row['saus'].capitalize()}")
+                    print(f"Keju              : {row['keju'].capitalize()}")
+                    print(f"Topping           : {row['topping']}")
+                    print(f"Total             : Rp {int(float(row['total_biaya'])):,}")
+                    if row['nama_penerima']:
+                        print(f"Nama Penerima     : {row['nama_penerima']}")
+                        print(f"Nomor Telepon     : {row['no_telepon']}")
+                        print(f"Alamat            : {row['alamat']}")
+                    print("-" * 50)
+        try:
+            pilih_kembali = input("\nMasukkan 0 untuk kembali: ")
+            if pilih_kembali == '0':
+                os.system("cls")
+                print("\nKembali ke Menu Utama...")
+                time.sleep(2)
+                os.system("cls")
+                break
+            pilih_kembali = int(pilih_kembali)
+            if pilih_kembali != 0:
+                os.system("cls")
+                print(f"\nMasukkan Nomor yang Valid!")
+        except ValueError:
+            os.system("cls")
+            print(f"\nMasukkan Nomor yang Valid!")
     
     if not found:
         print("\nAnda belum memiliki riwayat pesanan.")

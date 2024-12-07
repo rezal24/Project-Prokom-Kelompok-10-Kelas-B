@@ -1,5 +1,6 @@
 import csv
 import os
+import time
 from datetime import datetime
 
 # Fungsi autentikasi
@@ -27,8 +28,8 @@ def register_user():
         break
     
     while True:
-        password = input("Password: ")
         print ("!!!! Password Minimal 6 Karakter !!!!")
+        password = input("Password: ")
         if len(password) < 6:
             print("Password harus minimal 6 karakter.")
             continue
@@ -56,6 +57,8 @@ def register_user():
     
     os.system("cls")
     print("\nSign up berhasil!")
+    time.sleep(2)
+    os.system("cls")
     
     # Return user data untuk auto-login
     return {

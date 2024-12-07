@@ -1,6 +1,6 @@
 import csv
 import os
-
+import time
 
 def login():
     print("\n=== LOGIN POKER PIZZA ===")
@@ -23,6 +23,8 @@ def login():
                 if row['username'] == username and row['password'] == password:
                     os.system("cls")
                     print(f"\nLogin Berhasil!")
+                    time.sleep(2)
+                    os.system("cls")
                     print(f"\nSelamat datang di Poker Pizza, {username}!")
                     return row
         
