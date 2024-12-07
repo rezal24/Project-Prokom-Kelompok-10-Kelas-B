@@ -158,23 +158,37 @@ def menu_utama(user_data):
                 print("Tidak ada pesanan saat ini.")
                 continue
             
-            print(f"-" * 50)
-            print("=== DAFTAR PESANAN ===")
-            for idx, pesanan in enumerate(semua_pesanan, 1):
-                print(f"\nPizza #{idx}")
-                print(f"Ukuran Pizza          : {pesanan['ukuran'].capitalize()}")
-                print(f"Biaya Dasar           : Rp {pesanan['biaya_dasar']:,}")
-                print(f"Saus                  : {pesanan['saus'].capitalize()}")
-                print(f"Biaya Saus            : Rp {pesanan['biaya_saus']:,}")
-                print(f"Keju                  : {pesanan['keju'].capitalize()}")
-                print(f"Biaya Keju            : Rp {pesanan['biaya_keju']:,}")
-                print("\nTopping:")
-                for t in pesanan['topping']:
-                    print(f"- {t.capitalize():15}     : Rp {hitung_biaya_topping(t):,}")
-                print(f"Total Biaya Topping   : Rp {pesanan['biaya_topping']:,}")
-                print(f"Total Pizza #{idx}        : Rp {pesanan['total_biaya']:,}")
-                print("-" * 50)
-            
+            while True:    
+                print(f"-" * 50)
+                print("=== DAFTAR PESANAN ===")
+                for idx, pesanan in enumerate(semua_pesanan, 1):
+                    print(f"\nPizza #{idx}")
+                    print(f"Ukuran Pizza          : {pesanan['ukuran'].capitalize()}")
+                    print(f"Biaya Dasar           : Rp {pesanan['biaya_dasar']:,}")
+                    print(f"Saus                  : {pesanan['saus'].capitalize()}")
+                    print(f"Biaya Saus            : Rp {pesanan['biaya_saus']:,}")
+                    print(f"Keju                  : {pesanan['keju'].capitalize()}")
+                    print(f"Biaya Keju            : Rp {pesanan['biaya_keju']:,}")
+                    print("\nTopping:")
+                    for t in pesanan['topping']:
+                        print(f"- {t.capitalize():15}     : Rp {hitung_biaya_topping(t):,}")
+                    print(f"Total Biaya Topping   : Rp {pesanan['biaya_topping']:,}")
+                    print(f"Total Pizza #{idx}        : Rp {pesanan['total_biaya']:,}")
+                    print("-" * 50)
+                try:
+                    pilih_kembali = input("\nMasukkan 0 untuk kembali:")
+                    if pilih_kembali == '0':
+                        os.system("cls")
+                        print("\n Kembali ke Menu Utama...")
+                        break
+                    pilih_kembali = int(pilih_kembali)
+                    if pilih_kembali != 0:
+                        os.system("cls")
+                        print(f"\nMasukkan Nomor yang Valid!")
+                except ValueError:
+                    os.system("cls")
+                    print(f"\nMasukkan Nomor yang Valid!")
+                    
         elif pilihan == "3":
             if not semua_pesanan:
                 print("Tidak ada pesanan untuk dibatalkan.")
