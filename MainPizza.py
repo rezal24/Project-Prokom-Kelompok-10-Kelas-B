@@ -244,6 +244,7 @@ def menu_utama(user_data):
                     print("Nomor telepon tidak valid. Masukkan 11-12 digit nomor telepon (tanpa +62).")
                     
                 while True:
+                    print ("Menulis Alamat Harus Diawali Kata 'Jalan'!")
                     alamat = input("Alamat                  : ").strip()
                     # Pastikan alamat minimal berisi nama jalan
                     if "Jalan" in alamat:
@@ -355,6 +356,7 @@ def main():
             break
         
         else:
+            os.system("cls")
             print("\nPilihan tidak valid. Silakan pilih 1-3.")
 
 if __name__ == "__main__":
