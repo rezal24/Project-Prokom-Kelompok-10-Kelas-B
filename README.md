@@ -28,7 +28,7 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 - Pelanggan dapat melihat riwayat pesanan sekaligus harga yang dibayarkan yang telah dibuat sebelum-sebelumnya
 - Saat memilih keluar, pelanggan kembali ke menu akun. Disini pelanggan dapat memesan pizza dengan akun lain atau keluar dari keseluruhan sistem.
 
-#📍 SITEMAP 📍
+# 📍 SITEMAP 📍
 ![Blue and Black Mind Map Presentation](https://github.com/user-attachments/assets/d1b14e57-03ba-44b5-8db4-df1d36072217)
 
 
