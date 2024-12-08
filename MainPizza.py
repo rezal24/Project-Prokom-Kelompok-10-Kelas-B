@@ -18,7 +18,7 @@ def menu_utama(user_data):
         print("3. Cancel Pesanan")
         print("4. Checkout")
         print("5. Lihat Riwayat Pesanan")
-        print("6. Keluar")
+        print("6. Logout")
         
         pilihan = input("Pilih menu (1-6): ")
         os.system("cls")
