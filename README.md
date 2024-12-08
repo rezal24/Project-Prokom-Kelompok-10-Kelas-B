@@ -3,8 +3,10 @@
 1. I0324056 - Muhammad Nur Irvan A. (Nur-Irvan)
 2. I0324061 - Raul Muhammad Abbasy (raulbbsy)
 3. I0324063 - Rezal Yoga Kurniawan (rezal24)
+
 # PENJELASAN SISTEM PEMESANAN CUSTOM PIZZA ONLINE
 Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginannya. Pelanggan dapat memilih ukuran, saus, keju, dan topping pada pizza yang ingin dipesan. Pada sistem ini juga akan disediakan dua pilihan untuk mendapatkan pesanan hingga berada di tangan pelanggan yaitu melalui delivery atau pick-up langsung yang akan memberikan diskon 20% pada total pemesanan.
+
 # FITUR-FITUR APLIKASI
 1. Pelanggan dapat memilih 3 Ukuran Pizza, 3 Jenis Saus, 3 Jenis Keju, dan 15 Pilihan Topping.
 2. Pelanggan dapat membeli Pizza lebih dari satu dengan kombinasi yang berbeda.
@@ -23,4 +25,9 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 - Pelanggan dapat mengecek seluruh pesanan yang telah dibuat melalui pilihan Melihat Pesanan lalu dapat melaksanakan Checkout untuk menghasilkan struk. Setelah itu, pelanggan dapat keluar dari sistem.
 - Pelanggan juga dapat membatalkan pesanan yang telah dibuat sebelumnya pada pilihan Batalkan Pesanan. Lalu akan diantarkan kembali ke menu, sehingga dapat membuat pesanan baru.
 - Pelanggan dapat melihat riwayat pesanan sekaligus harga yang dibayarkan yang telah dibuat sebelum-sebelumnya
-- Saat keluar dari sistem, pelanggan akan otomatis _logout_ dari sistem
+- Saat memilih keluar, pelanggan kembali ke menu akun. Disini pelanggan dapat memesan pizza dengan akun lain atau keluar dari keseluruhan sistem.
+
+# SITEMAP
+![Blue and Black Mind Map Presentation](https://github.com/user-attachments/assets/d1b14e57-03ba-44b5-8db4-df1d36072217)
+
+
