@@ -26,7 +26,6 @@ def menu_utama(user_data):
         if pilihan == "1":
             pesanan_baru = {}
             
-            # Ukuran Pizza
             print("\n=== PILIHAN UKURAN PIZZA ===")
             print("1) Kecil           Rp 25.000")
             print("2) Sedang          Rp 35.000") 
@@ -45,7 +44,7 @@ def menu_utama(user_data):
                     os.system("cls")
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
-            
+                
             print("\n=== PILIHAN SAUS (Rp 10.000) ===")
             print("1) Saus Tomat")
             print("2) Saus Pesto")
@@ -64,7 +63,7 @@ def menu_utama(user_data):
                     os.system("cls")
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
-            
+                
             print("\n=== PILIHAN KEJU ===")
             print("1) Keju Cheddar    Rp 10.000")
             print("2) Keju Mozzarella Rp 12.000")
@@ -83,7 +82,7 @@ def menu_utama(user_data):
                     os.system("cls")
                     break
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
-            
+                
             print("\n=== PILIHAN TOPPING ===")
             print("1) Bawang          Rp 10.000")
             print("2) Jagung          Rp 10.000")
@@ -130,7 +129,7 @@ def menu_utama(user_data):
                 topping.append(tambahan)
                 biaya_topping += hitung_biaya_topping(tambahan)
                 print(f"Topping {tambahan.capitalize()} ditambahkan.")
-            
+                
             # Hitung biaya
             biaya_dasar = hitung_biaya_dasar(dasar)
             biaya_saus = hitung_biaya_saus(saus)
@@ -161,7 +160,7 @@ def menu_utama(user_data):
             if not semua_pesanan:
                 os.system("cls")
                 print("Tidak ada pesanan saat ini.")
-                print("\nKembali ke menu utama...")
+                print("\nKembali ke Menu Utama...")
                 time.sleep(2)
                 os.system("cls")
                 continue
@@ -212,7 +211,7 @@ def menu_utama(user_data):
                 print("0. Kembali ke Menu Utama")
                 for idx, pesanan in enumerate(semua_pesanan, 1):
                     print(f"{idx}. Pizza {pesanan['ukuran'].capitalize()} - Rp {pesanan['total_biaya']:,}")
-                
+
                 try:
                     pilih_batal = input("\nMasukkan nomor pizza yang ingin dibatalkan (0 untuk kembali): ")
                     
@@ -222,7 +221,7 @@ def menu_utama(user_data):
                         time.sleep(2) 
                         os.system("cls")
                         break
-                        
+                    
                     pilih_batal = int(pilih_batal)
                     if 1 <= pilih_batal <= len(semua_pesanan):
                         batalkan = semua_pesanan.pop(pilih_batal - 1)
@@ -238,7 +237,7 @@ def menu_utama(user_data):
                 except ValueError:
                     os.system("cls")
                     print("Masukkan nomor yang valid.")
-
+                    
         elif pilihan == "4":
             if not semua_pesanan:
                 os.system("cls")
@@ -272,7 +271,6 @@ def menu_utama(user_data):
                 
                 while True:
                     no_telepon_input = input("Nomor telepon           : (+62)").strip()
-                    # Validasi nomor telepon Indonesia dengan format +62
                     if no_telepon_input.isdigit() and 11 <= len(no_telepon_input) <= 12:
                         no_telepon = f"(+62){no_telepon_input}"
                         break
@@ -281,12 +279,11 @@ def menu_utama(user_data):
                 while True:
                     print ("Menulis Alamat Harus Diawali Kata 'Jalan'!")
                     alamat = input("Alamat                  : ").strip()
-                    # Pastikan alamat minimal berisi nama jalan
                     if "Jalan" in alamat:
                         break
                     else:
                         print("Nama jalan harus diisi!")
-                
+                        
                 # Tambahkan detail lengkap alamat
                 alamat_tambahan = input("Detail alamat (opsional): ")
                 alamat = f"{alamat}, {alamat_tambahan}".strip(', ')
@@ -296,7 +293,11 @@ def menu_utama(user_data):
                     pesanan['nama_penerima'] = nama_penerima
                     pesanan['no_telepon'] = no_telepon
                     pesanan['alamat'] = alamat
-            
+                    os.system("cls")
+                    print("Mencetak Struk Pembelian...")
+                    time.sleep(2)
+                    os.system("cls")
+                    
             # Dapatkan timestamp saat ini untuk struk
             waktu_pemesanan = datetime.now()
             
@@ -331,18 +332,18 @@ def menu_utama(user_data):
                         print(f"Nomor Telepon         : {no_telepon}")
                         print(f"Alamat                : {alamat}")
                         print(f"Biaya Pengiriman      : Gratis")
-
-                print("\nRingkasan Biaya:")
-                print(f"Total Pesanan         : Rp {total_biaya:,}")
-                
-                if diskon:
-                    print(f"Diskon (20%)          : Rp {round(pengurangan_biaya):,}")
-                else:
-                    print("Diskon                : Rp 0")
-                
-                print(f"Total Akhir           : Rp {round(total_keseluruhan):,}")
-                print("=" * 50)
-                
+                        
+                    print("\nRingkasan Biaya:")
+                    print(f"Total Pesanan         : Rp {total_biaya:,}")
+                    
+                    if diskon:
+                        print(f"Diskon (20%)          : Rp {round(pengurangan_biaya):,}")
+                    else:
+                        print("Diskon                : Rp 0")
+                    
+                    print(f"Total Akhir           : Rp {round(total_keseluruhan):,}")
+                    print("=" * 50)
+                    
                 try:
                     pilih_kembali = input("\nMasukkan 0 untuk kembali: ")
                     if pilih_kembali == '0':
@@ -364,7 +365,7 @@ def menu_utama(user_data):
             
             # Simpan struk pembelian
             simpan_struk_pembelian(semua_pesanan, total_keseluruhan, diskon, pengurangan_biaya, user_data, pesanan_pizza)
-                
+            
             # Reset pesanan setelah checkout
             semua_pesanan = []
             
@@ -384,7 +385,7 @@ def menu_utama(user_data):
             print("\nPilihan tidak valid. Silakan pilih 1-6.")
             time.sleep(2)
             os.system("cls")
-
+            
 def main():
     while True:
         print("\n=== SELAMAT DATANG DI POKER PIZZA ===")
@@ -402,10 +403,10 @@ def main():
         
         elif pilihan == "2":
             os.system("cls")
-            user_data = register_user()  # Menangkap data user yang baru sign up
-            if user_data:  # Jika sign up berhasil
+            user_data = register_user()  
+            if user_data: 
                 print(f"\nSelamat datang di Poker Pizza, {user_data['username']}!")
-                menu_utama(user_data)  # Langsung masuk ke menu utama
+                menu_utama(user_data)  
         
         elif pilihan == "3":
             os.system("cls")
