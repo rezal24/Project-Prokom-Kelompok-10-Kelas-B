@@ -261,10 +261,15 @@ def menu_utama(user_data):
             
             if pesanan_pizza == "ambil":
                 pengurangan_biaya = total_keseluruhan * (20 / 100)
-                total_keseluruhan = total_keseluruhan - pengurangan_biaya
+                total_akhir = total_keseluruhan - pengurangan_biaya
                 diskon = True
+                os.system("cls")
+                print("Mencetak Struk Pembelian...")
+                time.sleep(2)
+                os.system("cls")
             else:
                 diskon = False
+                total_akhir = total_keseluruhan
                 pengurangan_biaya = 0
                 print("\nMasukkan data pengiriman")
                 nama_penerima = input("Nama penerima           : ")
@@ -326,23 +331,24 @@ def menu_utama(user_data):
                     # Tambahkan waktu_pemesanan 
                     pesanan['waktu_pemesanan'] = waktu_pemesanan.strftime("%Y-%m-%d %H:%M:%S")
                 
-                    if pesanan_pizza == "antar":
-                        print("\nInformasi Pengiriman:")
-                        print(f"Nama Penerima         : {nama_penerima}")
-                        print(f"Nomor Telepon         : {no_telepon}")
-                        print(f"Alamat                : {alamat}")
-                        print(f"Biaya Pengiriman      : Gratis")
+                if pesanan_pizza == "antar":
+                    print("\nInformasi Pengiriman:")
+                    print(f"Nama Penerima         : {nama_penerima}")
+                    print(f"Nomor Telepon         : {no_telepon}")
+                    print(f"Alamat                : {alamat}")
+                    print(f"Biaya Pengiriman      : Gratis")
+                    print(f"-" * 50)
                         
-                    print("\nRingkasan Biaya:")
-                    print(f"Total Pesanan         : Rp {total_biaya:,}")
+                print("\nRingkasan Biaya:")
+                print(f"Total Pesanan         : Rp {total_keseluruhan:,}")
                     
-                    if diskon:
-                        print(f"Diskon (20%)          : Rp {round(pengurangan_biaya):,}")
-                    else:
-                        print("Diskon                : Rp 0")
+                if diskon:
+                    print(f"Diskon (20%)          : Rp {round(pengurangan_biaya):,}")
+                else:
+                    print("Diskon                : Rp 0")
                     
-                    print(f"Total Akhir           : Rp {round(total_keseluruhan):,}")
-                    print("=" * 50)
+                print(f"Total Akhir           : Rp {round(total_akhir):,}")
+                print("=" * 50)
                     
                 try:
                     pilih_kembali = input("\nMasukkan 0 untuk kembali: ")

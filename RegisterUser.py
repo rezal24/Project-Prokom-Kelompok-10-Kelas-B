@@ -45,7 +45,7 @@ def register_user():
     if not os.path.exists('users.csv'):
         with open('users.csv', 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['username', 'password', 'nama_lengkap', 'no_telepon', 'alamat', 'tanggal_daftar'])
+            writer.writerow(['username', 'password', 'tanggal_daftar'])
     
     # Membuat data pengguna
     tanggal_daftar = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -53,7 +53,7 @@ def register_user():
     # Menyimpan data pengguna
     with open('users.csv', 'a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([username, password, '', '', '', tanggal_daftar])
+        writer.writerow([username, password, tanggal_daftar])
     
     os.system("cls")
     print("\nSign up berhasil!")
@@ -64,8 +64,5 @@ def register_user():
     return {
         'username': username,
         'password': password,
-        'nama_lengkap': '',
-        'no_telepon': '',
-        'alamat': '',
         'tanggal_daftar': tanggal_daftar
     }
