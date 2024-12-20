@@ -374,6 +374,11 @@ def menu_utama(user_data):
             
             # Reset pesanan setelah checkout
             semua_pesanan = []
+ 
+            # Reset pesanan setelah checkout
+            semua_pesanan = []
+            # Reset pesanan setelah checkout
+            semua_pesanan = []
             
         elif pilihan == "5":
             os.system("cls")
