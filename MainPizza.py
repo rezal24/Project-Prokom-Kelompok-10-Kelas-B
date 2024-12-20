@@ -190,10 +190,12 @@ def menu_utama(user_data):
                         time.sleep(2)
                         os.system("cls")
                         break
+                    
                     pilih_kembali = int(pilih_kembali)
                     if pilih_kembali != 0:
                         os.system("cls")
                         print(f"\nMasukkan Nomor yang Valid!")
+                        
                 except ValueError:
                     os.system("cls")
                     print(f"\nMasukkan Nomor yang Valid!")
@@ -211,10 +213,8 @@ def menu_utama(user_data):
                 print("0. Kembali ke Menu Utama")
                 for idx, pesanan in enumerate(semua_pesanan, 1):
                     print(f"{idx}. Pizza {pesanan['ukuran'].capitalize()} - Rp {pesanan['total_biaya']:,}")
-
                 try:
-                    pilih_batal = input("\nMasukkan nomor pizza yang ingin dibatalkan (0 untuk kembali): ")
-                    
+                    pilih_batal = input("\nMasukkan nomor pizza yang ingin dibatalkan: ")
                     if pilih_batal == '0':
                         os.system("cls")
                         print("\nKembali ke menu utama...") 
@@ -231,9 +231,11 @@ def menu_utama(user_data):
                         time.sleep(2)
                         os.system("cls")
                         break
+                    
                     else:
                         os.system("cls")
                         print("Nomor pizza tidak valid.")
+                        
                 except ValueError:
                     os.system("cls")
                     print("Masukkan nomor yang valid.")
@@ -246,62 +248,90 @@ def menu_utama(user_data):
                 time.sleep(2)
                 os.system("cls")
                 continue
-                
-            print("\nApakah Anda ingin ambil sendiri atau diantar?")
-            print("Jika Anda ambil sendiri, Anda mendapat diskon 20%")
-            pesanan_pizza = input("Ketik 'ambil' atau 'antar': ").lower()
-            os.system("cls")
-            
-            # Data delivery
-            nama_penerima = ""
-            no_telepon = ""
-            alamat = ""
             
             total_keseluruhan = sum(pesanan['total_biaya'] for pesanan in semua_pesanan)
-            
-            if pesanan_pizza == "ambil":
-                pengurangan_biaya = total_keseluruhan * (20 / 100)
-                total_akhir = total_keseluruhan - pengurangan_biaya
-                diskon = True
-                os.system("cls")
-                print("Mencetak Struk Pembelian...")
-                time.sleep(2)
-                os.system("cls")
-            else:
-                diskon = False
-                total_akhir = total_keseluruhan
-                pengurangan_biaya = 0
-                print("\nMasukkan data pengiriman")
-                nama_penerima = input("Nama penerima           : ")
+            should_continue = False
                 
-                while True:
-                    no_telepon_input = input("Nomor telepon           : (+62)").strip()
-                    if no_telepon_input.isdigit() and 11 <= len(no_telepon_input) <= 12:
-                        no_telepon = f"(+62){no_telepon_input}"
+            while True:
+                print("\n=== PILIHAN PENGAMBILAN ===")
+                print("1. Ambil (Diskon 20%)")
+                print("2. Antar (Gratis Ongkir)")
+                print("0. Kembali ke Menu Utama")
+                
+                try:
+                    pesanan_choice = input("\nPilih metode pengambilan: ")
+                    if pesanan_choice == '0':
+                        os.system("cls")
+                        print("\nKembali ke menu utama...") 
+                        time.sleep(2) 
+                        os.system("cls")
+                        should_continue = True
                         break
-                    print("Nomor telepon tidak valid. Masukkan 11-12 digit nomor telepon (tanpa +62).")
-                    
-                while True:
-                    print ("Menulis Alamat Harus Diawali Kata 'Jalan'!")
-                    alamat = input("Alamat                  : ").strip()
-                    if "Jalan" in alamat:
-                        break
-                    else:
-                        print("Nama jalan harus diisi!")
                         
-                # Tambahkan detail lengkap alamat
-                alamat_tambahan = input("Detail alamat (opsional): ")
-                alamat = f"{alamat}, {alamat_tambahan}".strip(', ')
-                
-                # Tambahkan data pengiriman ke setiap pesanan
-                for pesanan in semua_pesanan:
-                    pesanan['nama_penerima'] = nama_penerima
-                    pesanan['no_telepon'] = no_telepon
-                    pesanan['alamat'] = alamat
+                    elif pesanan_choice == '1':
+                        pesanan_pizza = "ambil"
+                        pengurangan_biaya = total_keseluruhan * (20 / 100)
+                        total_akhir = total_keseluruhan - pengurangan_biaya
+                        diskon = True
+                        os.system("cls")
+                        print("Mencetak Struk Pembelian...")
+                        time.sleep(2)
+                        os.system("cls")
+                        break
+                        
+                    elif pesanan_choice == '2':
+                        pesanan_pizza = "antar"
+                        diskon = False
+                        total_akhir = total_keseluruhan
+                        pengurangan_biaya = 0
+                        os.system("cls")
+                        
+                        print("\nMasukkan data pengiriman")
+                        nama_penerima = input("Nama penerima           : ")
+                        
+                        while True:
+                            no_telepon_input = input("Nomor telepon           : (+62)").strip()
+                            if no_telepon_input.isdigit() and 11 <= len(no_telepon_input) <= 12:
+                                no_telepon = f"(+62){no_telepon_input}"
+                                break
+                            print("Nomor telepon tidak valid. Masukkan 11-12 digit nomor telepon (tanpa +62).")
+                            
+                        while True:
+                            print("Menulis Alamat Harus Diawali Kata 'Jalan'!")
+                            alamat = input("Alamat                  : ").strip()
+                            if "Jalan" in alamat:
+                                break
+                            else:
+                                print("Nama jalan harus diisi!")
+                                
+                        alamat_tambahan = input("Detail alamat (opsional): ")
+                        alamat = f"{alamat}, {alamat_tambahan}".strip(', ')
+                        
+                        for pesanan in semua_pesanan:
+                            pesanan['nama_penerima'] = nama_penerima
+                            pesanan['no_telepon'] = no_telepon
+                            pesanan['alamat'] = alamat
+                            
+                        os.system("cls")
+                        print("Mencetak Struk Pembelian...")
+                        time.sleep(2)
+                        os.system("cls")
+                        break
+                        
+                    else:
+                        os.system("cls")
+                        print("\nMasukkan Nomor yang Valid.")
+                        time.sleep(2)
+                        os.system("cls")
+                        
+                except ValueError:
                     os.system("cls")
-                    print("Mencetak Struk Pembelian...")
+                    print("\nMasukkan Nomor yang Valid.")
                     time.sleep(2)
                     os.system("cls")
+                    
+            if should_continue:
+                continue
                     
             # Dapatkan timestamp saat ini untuk struk
             waktu_pemesanan = datetime.now()
@@ -358,10 +388,12 @@ def menu_utama(user_data):
                         time.sleep(2)
                         os.system("cls")
                         break
+                    
                     pilih_kembali = int(pilih_kembali)
                     if pilih_kembali != 0:
                         os.system("cls")
                         print(f"\nMasukkan Nomor yang Valid!")
+                        
                 except ValueError:
                     os.system("cls")
                     print(f"\nMasukkan Nomor yang Valid!")
