@@ -7,7 +7,7 @@ from Login import login
 from RiwayatPesanan import lihat_riwayat_pesanan, simpan_pesanan
 from StrukPembelian import simpan_struk_pembelian
 from HitungBiaya import hitung_biaya_dasar, hitung_biaya_keju, hitung_biaya_saus, hitung_biaya_topping
-
+from KirimStruk import kirim_struk_email, kirim_struk_otomatis, kirim_struk_whatsapp
 def menu_utama(user_data):
     semua_pesanan = []
     
@@ -81,6 +81,7 @@ def menu_utama(user_data):
                     keju = keju_opsi[keju_input]
                     os.system("cls")
                     break
+                    
                 print("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
                 
             print("\n=== PILIHAN TOPPING ===")
@@ -403,14 +404,20 @@ def menu_utama(user_data):
             
             # Simpan struk pembelian
             simpan_struk_pembelian(semua_pesanan, total_keseluruhan, diskon, pengurangan_biaya, user_data, pesanan_pizza)
-            
+            # Setelah simpan_struk_pembelian
+            file_struk = f"struk/struk_{user_data['username']}_{waktu_pemesanan.strftime('%Y%m%d_%H%M')}.txt"
             # Reset pesanan setelah checkout
             semua_pesanan = []
- 
-            # Reset pesanan setelah checkout
-            semua_pesanan = []
-            # Reset pesanan setelah checkout
-            semua_pesanan = []
+            # Setelah simpan_struk_pembelian
+            file_struk = f"struk/struk_{user_data['username']}_{waktu_pemesanan.strftime('%Y%m%d_%H%M')}.txt"
+            # Validasi keberadaan file sebelum dikirim
+            if not os.path.isfile(file_struk):
+                print(f"File struk {file_struk} tidak ditemukan!")
+            else:
+                # Kirim struk secara otomatis
+                kirim_struk_otomatis(file_struk, user_data['username'])
+            time.sleep(2)
+            os.system("cls")
             
         elif pilihan == "5":
             os.system("cls")

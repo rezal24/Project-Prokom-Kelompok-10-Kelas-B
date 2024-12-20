@@ -9,7 +9,7 @@ def simpan_struk_pembelian(pesanan, total_keseluruhan, diskon, pengurangan_biaya
         
         # Timestamp sebagai nama file 
         waktu_pemesanan = datetime.now()
-        nama_file = f"struk/struk_{user_data['username']}_{waktu_pemesanan.strftime('%Y%m%d_%H%M%S')}.txt"
+        nama_file = f"struk/struk_{user_data['username']}_{waktu_pemesanan.strftime('%Y%m%d_%H%M')}.txt"
         
         while True:
             print(f"Cek struk-mu di: \n{os.path.abspath(nama_file)}")
