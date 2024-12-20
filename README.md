@@ -14,6 +14,7 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 4. Saat pelanggan melaksanakan checkout, akan diberi dua pilihan berupa delivery/pick-up langsung. Jika memilih pick-up langsung akan mendapatkan diskon 20% dari total pesanan.
 5. Data riwayat pesanan pelanggan tersimpan dan dapat diakses setiap waktu.
 6. Privasi riwayat pesanan pelanggan lebih terjaga dengan sistem akun dan sandi.
+7. Bagi penjual, akan mendapatkan struk pembayaran pelanggan melalui email dan whatsapp
 
 # 🤖 FLOWCHART (DIAGRAM ALIR) SISTEM 🤖
 ![WhatsApp Image 2024-12-02 at 17 29 10_b0304283](https://github.com/user-attachments/assets/0ab40c6c-542d-4ae0-8287-880429a5c388)
@@ -37,3 +38,11 @@ Sistem ini memperbolehkan pelanggan untuk memesan Pizza sesuai dengan keinginann
 3. datetime
 4. time
 5. traceback
+6. pywhatkit
+7. pyautogui
+8. keyboard
+9. webbrowser
+10. MIMEText
+11. MIMEMultipart
+12. MIMEApplication
+13. quote
