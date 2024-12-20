@@ -22,7 +22,7 @@ def kirim_struk_email(file_struk, nama_penerima):
     # Konfigurasi email
     EMAIL_PENGIRIM = "pokerpizza10@gmail.com"
     PASSWORD_EMAIL = "arso mxtr kpea quzc"  # Ganti dengan App Password
-    EMAIL_PENERIMA = "raulmabbasy@gmail.com"
+    EMAIL_PENERIMA = "priyandari@ft.uns.ac.id"
     
     # Buat objek MIME
     pesan = MIMEMultipart()
@@ -33,7 +33,7 @@ def kirim_struk_email(file_struk, nama_penerima):
     # Tambahkan body email
     body = f"""Halo {nama_penerima},
 
-Berikut adalah struk pembelian Anda dari Poker Pizza.
+Berikut adalah struk pembelianmu dari Poker Pizza.
 
 Terima kasih telah berbelanja di Poker Pizza!
 
@@ -68,7 +68,7 @@ def kirim_struk_whatsapp(file_struk):
             isi_struk = f.read()
         
         # Nomor WhatsApp penerima dan pengirim
-        NOMOR_WHATSAPP = "6285771108999"
+        NOMOR_WHATSAPP = "6281321515809"
         
         # Format pesan
         pesan = f"""*STRUK PEMBELIAN POKER PIZZA*
